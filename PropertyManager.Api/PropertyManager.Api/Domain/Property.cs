@@ -10,6 +10,7 @@ namespace PropertyManager.Api.Domain
     {
         public Property(PropertyModel model)
         {
+            this.Address = new Address(); 
             this.Update(model);
         }
 
@@ -19,6 +20,8 @@ namespace PropertyManager.Api.Domain
         }
 
         public int PropertyId { get; set; }
+        public string UserId { get; set; }
+
         public int? AddressId { get; set; }
         public string PropertyType { get; set; }
         public int? SquareFeet { get; set; }
@@ -26,10 +29,13 @@ namespace PropertyManager.Api.Domain
         public float? NumberOfBathrooms { get; set; }
         public int? NumberOfVehicles { get; set; }
         
-        public virtual Address Address { get; set; } 
+        public virtual Address Address { get; set; }
+
+        public virtual PropertyManagerUser User { get; set; }
 
         public virtual ICollection<Lease> Leases { get; set; }
         public virtual ICollection<WorkOrder> WorkOrders { get; set; }
+     
 
         public void Update(PropertyModel model)
         {
@@ -38,6 +44,7 @@ namespace PropertyManager.Api.Domain
             NumberOfBedrooms = model.NumberOfBedrooms;
             NumberOfBathrooms = model.NumberOfBathrooms;
             NumberOfVehicles = model.NumberOfVehicles;
+            
         }
     }
 }

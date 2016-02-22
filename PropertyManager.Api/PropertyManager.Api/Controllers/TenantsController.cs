@@ -15,6 +15,7 @@ using AutoMapper;
 
 namespace PropertyManager.Api.Controllers
 {
+    [Authorize]
     public class TenantsController : ApiController
     {
         private PropertyManagerDataContext db = new PropertyManagerDataContext();
@@ -106,6 +107,8 @@ namespace PropertyManager.Api.Controllers
             }
 
             var dbTenant = new Tenant(tenant);
+
+            dbTenant.User = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             db.Tenants.Add(dbTenant);
             db.SaveChanges();

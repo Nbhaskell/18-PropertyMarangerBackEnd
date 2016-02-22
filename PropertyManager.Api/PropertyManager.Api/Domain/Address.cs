@@ -34,6 +34,7 @@ namespace PropertyManager.Api.Domain
 
         public void Update(AddressModel model)
         {
+            
             Address1 = model.Address1;
             Address2 = model.Address2;
             Address3 = model.Address3;

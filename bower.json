@@ -1,0 +1,16 @@
+{
+  "name": "18-PropertyMarangerBackEnd",
+  "homepage": "https://github.com/Nbhaskell/18-PropertyMarangerBackEnd",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

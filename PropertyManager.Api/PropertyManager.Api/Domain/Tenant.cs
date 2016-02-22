@@ -10,6 +10,7 @@ namespace PropertyManager.Api.Domain
     {
         public Tenant(TenantModel model)
         {
+            this.Address = new Address();
             this.Update(model);
         }
 
@@ -19,6 +20,8 @@ namespace PropertyManager.Api.Domain
         }
 
         public int TenantId { get; set; }
+        public string UserId { get; set; }
+
         public int? AddressId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -27,8 +30,12 @@ namespace PropertyManager.Api.Domain
 
         public virtual Address Address { get; set; }
 
+        public virtual PropertyManagerUser User { get; set; }
+
         public virtual ICollection<Lease> Leases { get; set; }
         public virtual ICollection<WorkOrder> WorkOrders { get; set; }
+
+      
 
         public void Update(TenantModel model)
         {
@@ -36,6 +43,7 @@ namespace PropertyManager.Api.Domain
             LastName = model.LastName;
             Telephone = model.Telephone;
             EmailAddress = model.EmailAddress;
+            Address.Update(model.Address);
         }
     }
 }

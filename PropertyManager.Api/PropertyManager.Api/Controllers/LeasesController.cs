@@ -15,21 +15,27 @@ using AutoMapper;
 
 namespace PropertyManager.Api.Controllers
 {
+    [Authorize]
     public class LeasesController : ApiController
     {
         private PropertyManagerDataContext db = new PropertyManagerDataContext();
 
         // GET: api/Leases
+        
         public IEnumerable<LeaseModel> GetLeases()
         {
-            return Mapper.Map<IEnumerable<LeaseModel>>(db.Leases);
+            return Mapper.Map<IEnumerable<LeaseModel>>(
+                db.Leases.Where(l => l.Property.User.UserName == User.Identity.Name)
+                );
         }
 
         // GET: api/Leases/5
         [ResponseType(typeof(LeaseModel))]
         public IHttpActionResult GetLease(int id)
         {
-            Lease lease = db.Leases.Find(id);
+            // Lease lease = db.Lease.Find(id)
+
+            Lease lease = db.Leases.FirstOrDefault(l => l.Property.User.UserName == User.Identity.Name && l.LeaseId == id);
             if (lease == null)
             {
                 return NotFound();
@@ -47,12 +53,14 @@ namespace PropertyManager.Api.Controllers
                 return BadRequest(ModelState);
             }
 
+            Lease dbLease = db.Leases.FirstOrDefault(l => l.Property.User.UserName == User.Identity.Name && l.LeaseId == id);
+
             if (id != lease.LeaseId)
             {
                 return BadRequest();
             }
 
-            var dbLease = db.Leases.Find(id);
+            dbLease = db.Leases.Find(id);
 
             dbLease.Update(lease);
 
@@ -87,6 +95,7 @@ namespace PropertyManager.Api.Controllers
             }
 
             var dbLease = new Lease(lease);
+            dbLease.Property.User = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             db.Leases.Add(dbLease);
             db.SaveChanges();
