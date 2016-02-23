@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyManager.Api", "PropertyManager.Api\PropertyManager.Api.csproj", "{D30A519E-DC54-4F97-ABE8-85FC084D217F}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "18b-PropertyManager-Frontend", "..\..\18b-PropertyManager-Frontend\", "{DC30EA0B-630A-45B2-90B3-2B504DE95E5F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "18b-PropertyManager-Frontend", "18b-PropertyManager-Frontend\", "{DC30EA0B-630A-45B2-90B3-2B504DE95E5F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_65040"
